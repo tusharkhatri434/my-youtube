@@ -1,24 +1,50 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header';
+import Body from './components/Body';
+import { Provider } from 'react-redux';
+import store from "./utils/store";
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import MainContainer from './components/MainContainer';
+import WatchPage from './components/WatchPage';
+import Demo from './components/Demo';
+import SearchResult from './components/SearchResult';
 
+const appRouter = createBrowserRouter([{
+
+  path:"/",
+  element:<Youtube />,
+  children:[
+    {
+    path:"/",
+    element:<MainContainer />,
+   },
+   {
+    path:"/watch",
+    element:<WatchPage />,
+   },
+   {
+    path:"/demo",
+    element:<Demo />,
+   },
+   {
+    path:"/search",
+    element:<SearchResult />,
+   },
+]}]);
+
+function Youtube () {
+  return (
+    <>
+    <Provider store={store}>
+      <Header />
+      <Body />
+    </Provider>
+    </>
+  );
+}
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <RouterProvider router={appRouter} ></RouterProvider>
   );
 }
 
