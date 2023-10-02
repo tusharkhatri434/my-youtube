@@ -19,7 +19,9 @@ const Header = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+
     const timer = setTimeout(() => {
+
       if (searchCache[searchQuery]) {
         setSerachList(searchCache[searchQuery]);
       } else {
@@ -30,6 +32,7 @@ const Header = () => {
       clearTimeout(timer);
     };
   }, [searchQuery]);
+  
 
   const filterDataHandler = async () => {
     const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
