@@ -1,6 +1,6 @@
 const ShimmerUI = () => {
   return (
-    <div className="flex-col md:flex-row w-auto h-full flex flex-wrap justify-center">
+    <div className="-z-10 flex-col md:flex-row w-auto h-full flex flex-wrap justify-center">
       {Array.apply(null, Array(16)).map((_, i) => {
         return (
           <div

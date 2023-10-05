@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const SlideButtons = () => {
   return (
-   <div className='w-[100%] te mx-auto sticky top-12 bg-white overflow-auto whitespace-nowrap'>
+   <div className='w-[100%] z-10 mx-auto sticky top-12 bg-white overflow-auto whitespace-nowrap'>
       <Link className='inline-block mt-3 mx-2 bg-black/5 rounded-md text-sm focus:bg-black focus:text-white transition-colors ease-linear  px-3 py-1 text-center' to={"/"}>All</Link>
       <Link className='inline-block mt-3 mx-2 bg-black/5 rounded-md text-sm focus:bg-black focus:text-white transition-colors ease-linear  px-3 py-1 text-center' to={"/search?s=BMW bike"}>BMW</Link>
       <Link className='inline-block mt-3 mx-2 bg-black/5 rounded-md text-sm focus:bg-black focus:text-white transition-colors ease-linear  px-3 py-1 text-center' to={"/search?s=Love Babar"}>Love Babar</Link>

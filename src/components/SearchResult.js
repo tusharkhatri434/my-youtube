@@ -20,6 +20,9 @@ useEffect(()=>{
   dispatch(closeSearch());
   getResult();
   console.log("use paramas query call");
+  return()=>{
+    window.scrollTo(0, 0);
+  }
 },[searchQuery])
 
 const getResult = async ()=>{

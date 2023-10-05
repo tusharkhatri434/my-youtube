@@ -15,6 +15,7 @@ const VideoComponent = () => {
 
     return (()=>{
       clearTimeout(time);
+      window.scrollTo(0, 0);
     })
   },[]);
 
