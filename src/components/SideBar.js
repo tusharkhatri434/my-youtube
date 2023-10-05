@@ -1,5 +1,4 @@
 import React from 'react'
-import Home_logo from "../assets/home.svg"
 import { useSelector } from 'react-redux';
 import { AiFillHome } from "react-icons/ai";
 import { MdOutlineSubscriptions, MdOutlineVideoLibrary,MdOutlineWatchLater } from "react-icons/md";

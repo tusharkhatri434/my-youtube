@@ -3,6 +3,11 @@ export const YouTube_search_api =
 
 export const API_KEY = "AIzaSyDcHCIci8U4fjD-7iGOCNASQgcV90Hx2kg";
 
+export const VIDEO_API =
+  "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&key=" +
+  API_KEY +
+  "&id=";
+
 export const USER_PROFILE =
   "https://static.vecteezy.com/system/resources/thumbnails/002/002/403/small/man-with-beard-avatar-character-isolated-icon-free-vector.jpg";
 
@@ -12,12 +17,26 @@ export const USER_PROFILE =
   export const SEARCH_RESULT_API =
     "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&key="+API_KEY+"&q=";
 
+    export const COMMENTS_API =
+  "https://www.googleapis.com/youtube/v3/commentThreads?textFormat=plainText&part=snippet&maxResults=50&key=" +
+  API_KEY +
+  "&videoId=";
+
+ export const Description_API = "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=";
+//  + videoId + "&key=" + API_KEY;
+
+
 // random string generator
+
 export const MsgGenerator=(length)=> {
+
   let result = "";
+
   const characters =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
   const charactersLength = characters.length;
+
   let counter = 0;
   while (counter < length) {
     result += characters.charAt(Math.floor(Math.random() * charactersLength));

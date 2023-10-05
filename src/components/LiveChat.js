@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const Message = ({ name, mess }) => {
     return (
-      <div className="flex gap-2 items-center p-1 border-y-2 shadow-md m-1">
+      <div className="flex rounded-md gap-2 items-center p-1 border-y-2 shadow-md m-1">
         <img className="w-11" src={USER_PROFILE} alt="img"></img>
         <span className="font-medium">{name}</span>
         <p className="">{mess}</p>
@@ -44,7 +44,6 @@ const LiveChat = () => {
     },1000);
 
       return () => {
-        console.log("i am return of use effect");
         clearInterval(i);
       }
     
@@ -52,8 +51,8 @@ const LiveChat = () => {
 
  
   return (
-    <div className="w-96 h-96 mx-auto mt-6 border-2 border-gray-400 rounded-md">
-      <h1 className="text-lg pt-2 pl-2 border-b-2 border-gray-400 font-medium">
+    <div className="w-80 h-96 mx-auto mt-1 border-2 border-gray-400 rounded-md">
+      <h1 className="text-lg pt-2 pl-2 border-b-2 bg-black/10 border-gray-400 font-medium">
         Live Chats
       </h1>
       <div className="flex flex-col-reverse h-80 overflow-y-scroll mx-3">
@@ -62,7 +61,6 @@ const LiveChat = () => {
           <span className="font-medium"> tushar khatri - </span>
           <p className="">jkhdfkjsdkjfndkjnkckfn</p>
         </div> */}
-        {console.log("i am")}
        { chatInfo.map((c)=> (<Message key={c.id} name={c.name} mess={c.mess} />) )}
       </div>
        

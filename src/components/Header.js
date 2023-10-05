@@ -9,14 +9,26 @@ import {IoSearchOutline} from "react-icons/io5";
 import {FaRegBell} from "react-icons/fa";
 import { USER_PROFILE } from "../utils/contants";
 import{BiVideoPlus} from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { Link,useSearchParams } from "react-router-dom";
+import { closeSearch, openSearch } from "../utils/searchOpen";
+import { useNavigate } from "react-router-dom";
+
+
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [serachList, setSerachList] = useState([]);
-  const [listOpen, setListOpen] = useState(false);
+  const [searchUrl] = useSearchParams();
+
+  const navigate = useNavigate();
 
   const searchCache = useSelector((store) => store.search);
+  const searchToogle = useSelector((store) => store.searchToogle.isSearchOpen);
   const dispatch = useDispatch();
+
+  useEffect(()=>{
+    const search = document.getElementById("search-input");
+    search.blur();
+  },[searchUrl]) 
 
   useEffect(() => {
 
@@ -33,6 +45,9 @@ const Header = () => {
     };
   }, [searchQuery]);
   
+  const changeUrlHandler=()=>{
+    navigate("/search?s="+searchQuery);
+  }
 
   const filterDataHandler = async () => {
     const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
@@ -53,11 +68,11 @@ const Header = () => {
 
 
     function listHandler (){
-      setListOpen(false);
+      dispatch(closeSearch());
     }
 
   return (
-    <div className="grid grid-flow-col text-center  sticky top-0 bg-white">
+    <div className="grid grid-flow-col text-center z-20  sticky top-0 bg-white">
       <div className="col-span-1 flex items-center">
         <img
           onClick={menuHandler}
@@ -69,29 +84,32 @@ const Header = () => {
           <img className="cursor-pointer mx-4 h-5" alt="logo" src={Logo}></img>
         </a>
       </div>
-      <div onBlur={listHandler} tabIndex={0} className="col-span-8">
+      <div onBlur={listHandler} tabIndex={0} className="z-50 col-span-8">
         <div className="w-full flex items-center mx-10 mt-2">
           <input
+          id="search-input"
             className="border-[1px] border-gray-400 bg-gray-50 w-3/5 py-[5px] pl-4 rounded-l-full focus:outline-gray-400"
             type="text"
             placeholder="Search"
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            onFocus={() => setListOpen(true)}
-            // onBlur={() => setListOpen(false)}
+            onChange={(e) => {setSearchQuery(e.target.value)}}
+            onFocus={() => dispatch(openSearch())}
+            onKeyDown={(e)=>{
+              if(e.key==='Enter'){
+                changeUrlHandler();
+              }
+            }}
           ></input>
-          <span className="p-[7px] px-4 bg-black/5 border-gray-400 rounded-r-full border-[1px] ">
+          <span onClick={changeUrlHandler} className="cursor-pointer p-[7px] px-4 bg-black/5 border-gray-400 rounded-r-full border-[1px] ">
             <IoSearchOutline size={20} />
           </span>
-          {/* <button className="bg-gray-100 rounded-r-full text-base p-[5px] border-[1px] border-gray-400">
-            Search
-          </button> */}
         </div>
-        {listOpen && (
-          <div className="fixed ml-10 mt-1 w-[31rem] text-start bg-white rounded-xl shadow-lg border-gray-200">
+        {searchToogle && (
+          <div className="fixed top-11 ml-10 mt-1 w-[31rem] text-start bg-white rounded-xl shadow-lg border-gray-200">
             <ul>
               {serachList.slice(0, 7).map((s, i) => (
                 <Link
+                key={i}
                 onMouseDown={(e)=>{
                   e.preventDefault();
                   setSearchQuery(s);

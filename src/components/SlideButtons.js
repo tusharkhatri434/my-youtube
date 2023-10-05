@@ -3,22 +3,29 @@ import { Link } from 'react-router-dom';
 
 const SlideButtons = () => {
   return (
-    <div className=" w-fit mx-auto bg-white pt-4  pb-2">
-      <ul className="flex m-1">
-       <Link to={"/"} > <li className='px-3 text-sm py-1 bg-black text-white ml-2 rounded-lg cursor-pointer '>All</li></Link>
-       <Link to={"/search?s=Cricket"} > <li className='px-3 text-sm py-1 bg-black/5 mx-2 rounded-lg cursor-pointer '>Cricket</li></Link>
-       <Link to={"/search?s=Trending"} > <li className='px-3 text-sm py-1 bg-black/5 mx-2 rounded-lg cursor-pointer '>Trending</li></Link>
-       <Link to={"/search?s=Songs"} > <li className='px-3 text-sm py-1 bg-black/5 mx-2 rounded-lg cursor-pointer '>Songs</li></Link>
-       <Link to={"/search?s=Love"} > <li className='px-3 text-sm py-1 bg-black/5 mx-2 rounded-lg cursor-pointer '>Love</li></Link>
-       <Link to={"/search?s=Comedy"} > <li className='px-3 text-sm py-1 bg-black/5 mx-2 rounded-lg cursor-pointer '>Comedy</li></Link>
-       <Link to={"/search?s=Football"} > <li className='px-3 text-sm py-1 bg-black/5 mx-2 rounded-lg cursor-pointer '>Football</li></Link>
-       <Link to={"/search?s=Divine"} > <li className='px-3 text-sm py-1 bg-black/5 mx-2 rounded-lg cursor-pointer '>Divine</li></Link>
-       <Link to={"/search?s=Play"} > <li className='px-3 text-sm py-1 bg-black/5 mx-2 rounded-lg cursor-pointer '>Play</li></Link>
-       <Link to={"/search?s=Mobiles"} > <li className='px-3 text-sm py-1 bg-black/5 mx-2 rounded-lg cursor-pointer '>Mobiles</li></Link>
-       <Link to={"/search?s=Sad song"} > <li className='px-3 text-sm py-1 bg-black/5 mx-2 rounded-lg cursor-pointer '>Sad Song</li></Link>
-       <Link to={"/search?s=Movies"} > <li className='px-3 text-sm py-1 bg-black/5 mx-2 rounded-lg cursor-pointer '>Movies</li> </Link>
-      </ul>
-    </div>
+   <div className='w-[100%] te mx-auto sticky top-12 bg-white overflow-auto whitespace-nowrap'>
+      <Link className='inline-block mt-3 mx-2 bg-black/5 rounded-md text-sm focus:bg-black focus:text-white transition-colors ease-linear  px-3 py-1 text-center' to={"/"}>All</Link>
+      <Link className='inline-block mt-3 mx-2 bg-black/5 rounded-md text-sm focus:bg-black focus:text-white transition-colors ease-linear  px-3 py-1 text-center' to={"/search?s=BMW bike"}>BMW</Link>
+      <Link className='inline-block mt-3 mx-2 bg-black/5 rounded-md text-sm focus:bg-black focus:text-white transition-colors ease-linear  px-3 py-1 text-center' to={"/search?s=Love Babar"}>Love Babar</Link>
+      <Link className='inline-block mt-3 mx-2 bg-black/5 rounded-md text-sm focus:bg-black focus:text-white transition-colors ease-linear  px-3 py-1 text-center' to={"/search?s=Data Analytics"}>Data Analytics</Link>
+      <Link className='inline-block mt-3 mx-2 bg-black/5 rounded-md text-sm focus:bg-black focus:text-white transition-colors ease-linear  px-3 py-1 text-center' to={"/search?s=Cars"}>Cars</Link>
+      <Link className='inline-block mt-3 mx-2 bg-black/5 rounded-md text-sm focus:bg-black focus:text-white transition-colors ease-linear  px-3 py-1 text-center' to={"/search?s=Moto Sport"}>Moto Sport</Link>
+      <Link className='inline-block mt-3 mx-2 bg-black/5 rounded-md text-sm focus:bg-black focus:text-white transition-colors ease-linear  px-3 py-1 text-center' to={"/search?s=Pubg"}>PubG</Link>
+      <Link className='inline-block mt-3 mx-2 bg-black/5 rounded-md text-sm focus:bg-black focus:text-white transition-colors ease-linear  px-3 py-1 text-center' to={"/search?s=GTA-5"}>GTA-5</Link>
+      <Link className='inline-block mt-3 mx-2 bg-black/5 rounded-md text-sm focus:bg-black focus:text-white transition-colors ease-linear  px-3 py-1 text-center' to={"/search?s=Cartoon network"}>Cartoon Network</Link>
+      <Link className='inline-block mt-3 mx-2 bg-black/5 rounded-md text-sm focus:bg-black focus:text-white transition-colors ease-linear  px-3 py-1 text-center' to={"/search?s=cooking"}>Cooking</Link>
+      <Link className='inline-block mt-3 mx-2 bg-black/5 rounded-md text-sm focus:bg-black focus:text-white transition-colors ease-linear  px-3 py-1 text-center' to={"/search?s=Bikes"}>Bikes</Link>
+      <Link className='inline-block mt-3 mx-2 bg-black/5 rounded-md text-sm focus:bg-black focus:text-white transition-colors ease-linear  px-3 py-1 text-center' to={"/search?s=software"}>Software</Link>
+      <Link className='inline-block mt-3 mx-2 bg-black/5 rounded-md text-sm focus:bg-black focus:text-white transition-colors ease-linear  px-3 py-1 text-center' to={"/search?s=Cricket"}>Cricket</Link>
+      <Link className='inline-block mt-3 mx-2 bg-black/5 rounded-md text-sm focus:bg-black focus:text-white transition-colors ease-linear  px-3 py-1 text-center' to={"/search?s=Football"}>FootbAll</Link>
+      <Link className='inline-block mt-3 mx-2 bg-black/5 rounded-md text-sm focus:bg-black focus:text-white transition-colors ease-linear  px-3 py-1 text-center' to={"/search?s=Newes"}>Newes</Link>
+      <Link className='inline-block mt-3 mx-2 bg-black/5 rounded-md text-sm focus:bg-black focus:text-white transition-colors ease-linear  px-3 py-1 text-center' to={"/search?s=Meerut Vlogs"}>Meerut</Link>
+      <Link className='inline-block mt-3 mx-2 bg-black/5 rounded-md text-sm focus:bg-black focus:text-white transition-colors ease-linear  px-3 py-1 text-center' to={"/search?s=Dsa tutorials"}>DSA</Link>
+      <Link className='inline-block mt-3 mx-2 bg-black/5 rounded-md text-sm focus:bg-black focus:text-white transition-colors ease-linear  px-3 py-1 text-center' to={"/search?s=What is computer programing"}>Computer Programing</Link>
+      <Link className='inline-block mt-3 mx-2 bg-black/5 rounded-md text-sm focus:bg-black focus:text-white transition-colors ease-linear  px-3 py-1 text-center' to={"/search?s=Skills to build in 2023"}>Skiils</Link>
+      <Link className='inline-block mt-3 mx-2 bg-black/5 rounded-md text-sm focus:bg-black focus:text-white transition-colors ease-linear  px-3 py-1 text-center' to={"/search?s=effective communication"}>Communication</Link>
+      <Link className='inline-block mt-3 mx-2 bg-black/5 rounded-md text-sm focus:bg-black focus:text-white transition-colors ease-linear  px-3 py-1 text-center' to={"/search?s=English Speaking"}>English</Link>
+   </div>
   )
 }
 

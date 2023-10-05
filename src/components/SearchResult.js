@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { SEARCH_RESULT_API } from '../utils/contants';
-import VideoCard from './VideoCard';
 import SearchResultsCard from './SearchResultCard';
-
 import { useDispatch } from 'react-redux';
 import { openMenu } from '../utils/SideBarSlice';
 import { closeSearch } from '../utils/searchOpen';
@@ -11,19 +9,21 @@ import { closeSearch } from '../utils/searchOpen';
 const SearchResult = () => {
 
  const [query] = useSearchParams();
+ const searchQuery = query.get("s");
  const [searchVideos,setSearchVideos] = useState([]);
 
   const dispatch = useDispatch();
 
    dispatch(openMenu()); 
-   dispatch(closeSearch());
   
 useEffect(()=>{
+  dispatch(closeSearch());
   getResult();
-},[])
+  console.log("use paramas query call");
+},[searchQuery])
 
 const getResult = async ()=>{
-  const data = await fetch(SEARCH_RESULT_API +query.get("s"));
+  const data = await fetch(SEARCH_RESULT_API +searchQuery);
   const json = await data.json();
    setSearchVideos(json.items);
   // console.log(json.items);

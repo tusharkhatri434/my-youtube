@@ -30,7 +30,7 @@ if(videoList.length===0){
   return <ShimmerUI/>;
 }
   return (
-    <div className="mt-3 flex flex-wrap justify-center">
+    <div className="flex flex-wrap justify-center">
       {videoList.map((video)=>(<Link key={video.id} to={'/watch?v='+video.id}> <VideoCard info={video} /></Link>))}
      
     </div>
