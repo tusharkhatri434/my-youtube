@@ -43,6 +43,7 @@ const Header = () => {
     return () => {
       clearTimeout(timer);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery]);
   
   const changeUrlHandler=()=>{
