@@ -12,18 +12,32 @@ import{BiVideoPlus} from "react-icons/bi";
 import { Link,useSearchParams } from "react-router-dom";
 import { closeSearch, openSearch } from "../utils/searchOpen";
 import { useNavigate } from "react-router-dom";
-
+import { MdKeyboardVoice } from "react-icons/md";
+import { AiOutlinePauseCircle } from "react-icons/ai";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
 
 const Header = () => {
+  const [voiceAssistant, setVoiceAssistant] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [serachList, setSerachList] = useState([]);
   const [searchUrl] = useSearchParams();
-
   const navigate = useNavigate();
-
   const searchCache = useSelector((store) => store.search);
   const searchToogle = useSelector((store) => store.searchToogle.isSearchOpen);
   const dispatch = useDispatch();
+
+     const startListening = () => {
+       resetTranscript();
+       SpeechRecognition.startListening({
+         continuous: true,
+         language: "en-IN",
+       });
+     };
+     const { transcript, resetTranscript, browserSupportsSpeechRecognition } =
+       useSpeechRecognition();
+
 
   useEffect(()=>{
     const search = document.getElementById("search-input");
@@ -46,8 +60,20 @@ const Header = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery]);
   
+    useEffect(() => {
+      setSearchQuery(transcript);
+      const t1 = setTimeout(() => {
+        SpeechRecognition.stopListening();
+        setVoiceAssistant(true);
+      }, 5000);
+
+      return () => clearTimeout(t1);
+    }, [transcript]);
+
   const changeUrlHandler=()=>{
     navigate("/search?s="+searchQuery);
+    setVoiceAssistant(true);
+    SpeechRecognition.stopListening();
   }
 
   const filterDataHandler = async () => {
@@ -88,38 +114,60 @@ const Header = () => {
       <div onBlur={listHandler} tabIndex={0} className="z-50 col-span-8">
         <div className="w-full flex items-center mx-10 mt-2">
           <input
-          id="search-input"
+            id="search-input"
             className="border-[1px] border-gray-400 bg-gray-50 w-3/5 py-[5px] pl-4 rounded-l-full focus:outline-gray-400"
             type="text"
             placeholder="Search"
             value={searchQuery}
-            onChange={(e) => {setSearchQuery(e.target.value)}}
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+            }}
             onFocus={() => dispatch(openSearch())}
-            onKeyDown={(e)=>{
-              if(e.key==='Enter'){
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
                 changeUrlHandler();
               }
             }}
           ></input>
-          <span onClick={changeUrlHandler} className="cursor-pointer p-[7px] px-4 bg-black/5 border-gray-400 rounded-r-full border-[1px] ">
+          <span
+            onClick={changeUrlHandler}
+            className="cursor-pointer p-[7px] px-4 bg-black/5 border-gray-400 rounded-r-full border-[1px] "
+          >
             <IoSearchOutline size={20} />
           </span>
+          {browserSupportsSpeechRecognition ? (
+            <span
+              className="ml-2 cursor-pointer"
+              onClick={() => {
+                startListening();
+                setVoiceAssistant(!voiceAssistant);
+                dispatch(openSearch());
+              }}
+            >
+              {voiceAssistant ? (
+                <MdKeyboardVoice size={30} />
+              ) : (
+                <AiOutlinePauseCircle size={30} />
+              )}
+            </span>
+          ) : null}
         </div>
         {searchToogle && (
           <div className="fixed top-11 ml-10 mt-1 w-[31rem] text-start bg-white rounded-xl shadow-lg border-gray-200">
             <ul>
               {serachList.slice(0, 7).map((s, i) => (
                 <Link
-                key={i}
-                onMouseDown={(e)=>{
-                  e.preventDefault();
-                  setSearchQuery(s);
-                }}
-                 to={"/search?s="+s}>
-                <li className="py-1 flex items-center gap-2 px-2 my-1 rounded-lg border-gray-400 hover:bg-gray-200">
-                  <IoSearchOutline />
-                  <span>{s}</span>
-                </li>
+                  key={i}
+                  onMouseDown={(e) => {
+                    e.preventDefault();
+                    setSearchQuery(s);
+                  }}
+                  to={"/search?s=" + s}
+                >
+                  <li className="py-1 flex items-center gap-2 px-2 my-1 rounded-lg border-gray-400 hover:bg-gray-200">
+                    <IoSearchOutline />
+                    <span>{s}</span>
+                  </li>
                 </Link>
               ))}
             </ul>
