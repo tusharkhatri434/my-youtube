@@ -65,7 +65,8 @@ const Header = () => {
       const t1 = setTimeout(() => {
         SpeechRecognition.stopListening();
         setVoiceAssistant(true);
-      }, 5000);
+        changeUrlHandler();
+      }, 2000);
 
       return () => clearTimeout(t1);
     }, [transcript]);
