@@ -1,7 +1,7 @@
 export const YouTube_search_api =
   "http://suggestqueries.google.com/complete/search?client=youtube&ds=yt&client=firefox&q=";
 
-export const API_KEY = "AIzaSyDcHCIci8U4fjD-7iGOCNASQgcV90Hx2kg";
+export const API_KEY = {};
 
 export const VIDEO_API =
   "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&key=" +
