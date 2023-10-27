@@ -27,17 +27,21 @@ const Header = () => {
   const searchCache = useSelector((store) => store.search);
   const searchToogle = useSelector((store) => store.searchToogle.isSearchOpen);
   const dispatch = useDispatch();
-
+ 
      const startListening = () => {
-       resetTranscript();
-       SpeechRecognition.startListening({
-         continuous: true,
-         language: "en-IN",
-       });
+       if(!voiceAssistant){
+         SpeechRecognition.stopListening();
+        }
+        else{
+          resetTranscript();
+          SpeechRecognition.startListening({
+            continuous: true,
+            language: "en-IN",
+          });
+      }
      };
      const { transcript, resetTranscript, browserSupportsSpeechRecognition } =
        useSpeechRecognition();
-
 
   useEffect(()=>{
     const search = document.getElementById("search-input");
@@ -65,7 +69,7 @@ const Header = () => {
       const t1 = setTimeout(() => {
         SpeechRecognition.stopListening();
         setVoiceAssistant(true);
-      }, 2000);
+      }, 5000);
 
       return () => clearTimeout(t1);
     }, [transcript]);
