@@ -8,6 +8,8 @@ My-youtube with React, Tailwind, and Redux, my YouTube clone offers efficient AP
 ## 🛠 Tech Stack 
 React , Redux , Javascript ,Tailwindcss...
 
+## Project IMG
+![Youtube Img](https://raw.githubusercontent.com/tusharkhatri434/my-project-assets/master/p1.png)
 
 ## Run Locally
 
