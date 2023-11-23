@@ -42,5 +42,5 @@ Start the server
 
 To run this project, you will need to add the following environment variables to your Browser
 
-`Add this extension seeamless API calling` - [CROS](https://chrome.google.com/webstore/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino)
+`Add this extension for seeamless API calling` - [CROS](https://chrome.google.com/webstore/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino)
 
